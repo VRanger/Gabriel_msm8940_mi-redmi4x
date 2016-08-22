@@ -15,6 +15,14 @@ CPPFLAGS_vmlinux.lds = -DTEXT_OFFSET=$(TEXT_OFFSET)
 OBJCOPYFLAGS	:=-O binary -R .note -R .note.gnu.build-id -R .comment -S
 GZFLAGS		:=-9
 
+ifeq ($(CONFIG_ARM64_ERRATUM_843419),y)
+  ifeq ($(call ld-option, --fix-cortex-a53-843419),)
+$(warning ld does not support --fix-cortex-a53-843419; kernel may be susceptible to erratum)
+  else
+LDFLAGS_vmlinux	+= --fix-cortex-a53-843419
+  endif
+endif
+
 KBUILD_DEFCONFIG := defconfig
 
 ARM_ARCH_OPT := -mtune=cortex-a53 -march=armv8-a+crc+simd+crypto -mcpu=cortex-a53
