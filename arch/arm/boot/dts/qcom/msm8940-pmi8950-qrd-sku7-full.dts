@@ -2574,7 +2574,7 @@
 
 					qcom,gpu-pwrlevel@0 {
 						reg = <0x0>;
-						qcom,gpu-freq = <0x1EFE9200>;
+						qcom,gpu-freq = <0x1c4fecc0>;
 						qcom,bus-freq = <0xa>;
 						qcom,bus-min = <0xa>;
 						qcom,bus-max = <0xa>;
